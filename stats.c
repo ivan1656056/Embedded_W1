@@ -9,13 +9,13 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file <Array Statistics - Implementation File> 
+ * @brief <Program that performs data analysis and return statistical information about an array>
  *
- * <Add Extended Description Here>
+ * <With this program, given an array, we can obtain the maximum, minimum, mean, and median of a data set; we can also reorder the data set from large to small. Statistical values are rounded down to the nearest integer>
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author <Iván Herrera>
+ * @date <22/04/2020>
  *
  */
 
@@ -27,7 +27,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
@@ -41,3 +41,32 @@ void main() {
 }
 
 /* Add other Implementation File Code Here */
+
+void print_statistics(int median, int mean, int maximum, int minimum){
+
+}
+
+void print_array(int size, unsigned char test[]){
+    
+}
+
+int find_median(int size, unsigned char test[]){
+    
+}
+
+int find_mean(int size, unsigned char test[]){
+    
+}
+
+int find_maximum(int size, unsigned char test[]){
+    
+}
+
+int find_minimum(int size, unsigned char test[]){
+    
+}
+
+int sort_Array(unsigned char test[]){
+    
+}
+
