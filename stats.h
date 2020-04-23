@@ -22,7 +22,7 @@
 #define __STATS_H__
 
 /* Add Your Declarations and Function Comments here */ 
-void print_statistics(int median, int mean, int maximum, int minimum);
+void print_statistics(unsigned char median, unsigned char mean, unsigned char maximum, unsigned char minimum);
 /**
  * @brief <Prints the obtained values>
  *
@@ -102,7 +102,7 @@ int find_minimum(int size, unsigned char test[]);
  */
 
 /* Add Your Declarations and Function Comments here */ 
-int sort_Array(unsigned char test[]);
+void sort_Array(int size, unsigned char test[]);
 /**
  * @brief <Sorts the array from largest to smallest>
  *
