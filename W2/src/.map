@@ -1,0 +1,299 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+buffer              0xa               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MAIN_FLASH       0x0000000000000000 0x0000000000040000 xr
+INFO_FLASH       0x0000000000200000 0x0000000000004000 xr
+SRAM_CODE        0x0000000001000000 0x0000000000010000 xrw
+SRAM_DATA        0x0000000020000000 0x0000000000010000 rw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD memory.o
+LOAD startup_msp432p401r_gcc.o
+LOAD system_msp432p401r.o
+LOAD interrupts_msp432p401r_gcc.o
+                0x0000000000000000                PROVIDE (_intvecs_base_address, DEFINED (_intvecs_base_address)?_intvecs_base_address:0x0)
+
+.intvecs        0x0000000000000000      0x140
+ *(.intvecs)
+ .intvecs       0x0000000000000000      0x140 startup_msp432p401r_gcc.o
+                0x0000000000000000                interruptVectors
+                0x0000000000200000                PROVIDE (_mailbox_base_address, 0x200000)
+
+.flashMailbox
+ *(.flashMailbox)
+                0x0000000000201000                PROVIDE (_tlv_base_address, 0x201000)
+
+.tlvTable
+ *(.tlvTable)
+                0x0000000000202000                PROVIDE (_bsl_base_address, 0x202000)
+
+.bslArea
+ *(.bslArea)
+                0x0000000020000000                PROVIDE (_vtable_base_address, DEFINED (_vtable_base_address)?_vtable_base_address:0x20000000)
+
+.vtable
+ *(.vtable)
+
+.text           0x0000000000000140      0x4d4
+ CREATE_OBJECT_SYMBOLS
+ *(.text)
+ .text          0x0000000000000140       0xb4 main.o
+                0x0000000000000140                main
+ .text          0x00000000000001f4       0xb0 memory.o
+                0x00000000000001f4                set_value
+                0x0000000000000218                clear_value
+                0x0000000000000234                get_value
+                0x0000000000000252                set_all
+                0x0000000000000288                clear_all
+ .text          0x00000000000002a4        0x0 startup_msp432p401r_gcc.o
+ .text          0x00000000000002a4      0x370 system_msp432p401r.o
+                0x00000000000002a4                SystemCoreClockUpdate
+                0x0000000000000594                SystemInit
+ .text          0x0000000000000614        0x0 interrupts_msp432p401r_gcc.o
+ *(.text.*)
+                0x0000000000000614                . = ALIGN (0x4)
+ *(.ctors)
+                0x0000000000000614                . = ALIGN (0x4)
+ *(.dtors)
+                0x0000000000000614                . = ALIGN (0x4)
+                0x0000000000000614                __init_array_start = .
+ *(.init_array*)
+                0x0000000000000614                __init_array_end = .
+ *(.init)
+ *(.fini*)
+
+.glue_7         0x0000000000000614        0x0
+ .glue_7        0x0000000000000614        0x0 linker stubs
+
+.glue_7t        0x0000000000000614        0x0
+ .glue_7t       0x0000000000000614        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000000614        0x0
+ .vfp11_veneer  0x0000000000000614        0x0 linker stubs
+
+.v4_bx          0x0000000000000614        0x0
+ .v4_bx         0x0000000000000614        0x0 linker stubs
+
+.iplt           0x0000000000000614        0x0
+ .iplt          0x0000000000000614        0x0 main.o
+
+.text:Reset_Handler
+                0x0000000000000614       0x6c
+ .text:Reset_Handler
+                0x0000000000000614       0x6c interrupts_msp432p401r_gcc.o
+                0x0000000000000614                Reset_Handler
+
+.text:NMI_Handler
+                0x0000000000000680        0xe
+ .text:NMI_Handler
+                0x0000000000000680        0xe interrupts_msp432p401r_gcc.o
+                0x0000000000000680                NMI_Handler
+
+.text:HardFault_Handler
+                0x000000000000068e        0xe
+ .text:HardFault_Handler
+                0x000000000000068e        0xe interrupts_msp432p401r_gcc.o
+                0x000000000000068e                HardFault_Handler
+
+.text:Default_Handler
+                0x000000000000069c        0xe
+ .text:Default_Handler
+                0x000000000000069c        0xe interrupts_msp432p401r_gcc.o
+                0x000000000000069c                CS_IRQHandler
+                0x000000000000069c                DebugMon_Handler
+                0x000000000000069c                AES256_IRQHandler
+                0x000000000000069c                SysTick_Handler
+                0x000000000000069c                PendSV_Handler
+                0x000000000000069c                RTC_C_IRQHandler
+                0x000000000000069c                PORT1_IRQHandler
+                0x000000000000069c                FPU_IRQHandler
+                0x000000000000069c                PORT2_IRQHandler
+                0x000000000000069c                TA3_0_IRQHandler
+                0x000000000000069c                UsageFault_Handler
+                0x000000000000069c                DMA_INT3_IRQHandler
+                0x000000000000069c                TA2_0_IRQHandler
+                0x000000000000069c                DMA_INT1_IRQHandler
+                0x000000000000069c                WDT_A_IRQHandler
+                0x000000000000069c                TA2_N_IRQHandler
+                0x000000000000069c                TA1_0_IRQHandler
+                0x000000000000069c                PSS_IRQHandler
+                0x000000000000069c                DMA_INT2_IRQHandler
+                0x000000000000069c                EUSCIA3_IRQHandler
+                0x000000000000069c                DMA_INT0_IRQHandler
+                0x000000000000069c                PORT4_IRQHandler
+                0x000000000000069c                PORT5_IRQHandler
+                0x000000000000069c                EUSCIB0_IRQHandler
+                0x000000000000069c                Default_Handler
+                0x000000000000069c                T32_INTC_IRQHandler
+                0x000000000000069c                TA3_N_IRQHandler
+                0x000000000000069c                TA0_0_IRQHandler
+                0x000000000000069c                EUSCIA2_IRQHandler
+                0x000000000000069c                PORT6_IRQHandler
+                0x000000000000069c                PORT3_IRQHandler
+                0x000000000000069c                MemManage_Handler
+                0x000000000000069c                SVC_Handler
+                0x000000000000069c                TA1_N_IRQHandler
+                0x000000000000069c                EUSCIA1_IRQHandler
+                0x000000000000069c                COMP_E1_IRQHandler
+                0x000000000000069c                EUSCIB2_IRQHandler
+                0x000000000000069c                FLCTL_IRQHandler
+                0x000000000000069c                EUSCIB3_IRQHandler
+                0x000000000000069c                T32_INT1_IRQHandler
+                0x000000000000069c                DMA_ERR_IRQHandler
+                0x000000000000069c                ADC14_IRQHandler
+                0x000000000000069c                EUSCIA0_IRQHandler
+                0x000000000000069c                BusFault_Handler
+                0x000000000000069c                PCM_IRQHandler
+                0x000000000000069c                TA0_N_IRQHandler
+                0x000000000000069c                COMP_E0_IRQHandler
+                0x000000000000069c                EUSCIB1_IRQHandler
+                0x000000000000069c                T32_INT2_IRQHandler
+
+.rel.dyn        0x00000000000006ac        0x0
+ .rel.iplt      0x00000000000006ac        0x0 main.o
+
+.rodata
+ *(.rodata)
+ *(.rodata.*)
+
+.ARM.exidx      0x00000000000006aa        0x0
+                0x00000000000006aa                __exidx_start = .
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00000000000006aa                __exidx_end = .
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x00000000000006aa                __etext = .
+
+.data           0x0000000020000000        0x4 load address 0x00000000000006aa
+                0x00000000000006aa                __data_load__ = LOADADDR (.data)
+                0x0000000020000000                __data_start__ = .
+ *(.data)
+ .data          0x0000000020000000        0x0 main.o
+ .data          0x0000000020000000        0x0 memory.o
+ .data          0x0000000020000000        0x0 startup_msp432p401r_gcc.o
+ .data          0x0000000020000000        0x4 system_msp432p401r.o
+                0x0000000020000000                SystemCoreClock
+ .data          0x0000000020000004        0x0 interrupts_msp432p401r_gcc.o
+ *(.data*)
+                0x0000000020000004                . = ALIGN (0x4)
+                0x0000000020000004                __data_end__ = .
+
+.igot.plt       0x0000000020000004        0x0 load address 0x00000000000006ae
+ .igot.plt      0x0000000020000004        0x0 main.o
+
+.bss            0x0000000020000004        0xc
+                0x0000000020000004                __bss_start__ = .
+ *(.shbss)
+ *(.bss)
+ .bss           0x0000000020000004        0x0 main.o
+ .bss           0x0000000020000004        0x0 memory.o
+ .bss           0x0000000020000004        0x0 startup_msp432p401r_gcc.o
+ .bss           0x0000000020000004        0x0 system_msp432p401r.o
+ .bss           0x0000000020000004        0x0 interrupts_msp432p401r_gcc.o
+ *(.bss.*)
+ *(COMMON)
+ COMMON         0x0000000020000004        0xa main.o
+                0x0000000020000004                buffer
+                0x0000000020000010                . = ALIGN (0x4)
+ *fill*         0x000000002000000e        0x2 
+                0x0000000020000010                __bss_end__ = .
+
+.heap           0x0000000020000010        0x0
+                0x0000000020000010                __heap_start__ = .
+                0x0000000020000010                end = __heap_start__
+                0x0000000020000010                _end = end
+                0x0000000020000010                __end = end
+ *(.heap)
+                0x0000000020000010                __heap_end__ = .
+                0x0000000020000010                __HeapLimit = __heap_end__
+
+.stack          0x0000000020000010        0x0
+                0x0000000020000010                _stack = .
+                0x0000000020000010                __stack = .
+ *(.stack)
+OUTPUT(Executable elf32-littlearm)
+
+.debug_info     0x0000000000000000     0x1143
+ .debug_info    0x0000000000000000      0x113 main.o
+ .debug_info    0x0000000000000113      0x15c memory.o
+ .debug_info    0x000000000000026f       0xb3 startup_msp432p401r_gcc.o
+ .debug_info    0x0000000000000322      0xd13 system_msp432p401r.o
+ .debug_info    0x0000000000001035      0x10e interrupts_msp432p401r_gcc.o
+
+.debug_abbrev   0x0000000000000000      0x378
+ .debug_abbrev  0x0000000000000000       0xbb main.o
+ .debug_abbrev  0x00000000000000bb       0xa3 memory.o
+ .debug_abbrev  0x000000000000015e       0x6d startup_msp432p401r_gcc.o
+ .debug_abbrev  0x00000000000001cb      0x11b system_msp432p401r.o
+ .debug_abbrev  0x00000000000002e6       0x92 interrupts_msp432p401r_gcc.o
+
+.debug_aranges  0x0000000000000000       0xb0
+ .debug_aranges
+                0x0000000000000000       0x20 main.o
+ .debug_aranges
+                0x0000000000000020       0x20 memory.o
+ .debug_aranges
+                0x0000000000000040       0x18 startup_msp432p401r_gcc.o
+ .debug_aranges
+                0x0000000000000058       0x20 system_msp432p401r.o
+ .debug_aranges
+                0x0000000000000078       0x38 interrupts_msp432p401r_gcc.o
+
+.debug_line     0x0000000000000000      0x4b9
+ .debug_line    0x0000000000000000      0x135 main.o
+ .debug_line    0x0000000000000135       0x57 memory.o
+ .debug_line    0x000000000000018c       0x8f startup_msp432p401r_gcc.o
+ .debug_line    0x000000000000021b      0x1b0 system_msp432p401r.o
+ .debug_line    0x00000000000003cb       0xee interrupts_msp432p401r_gcc.o
+
+.debug_str      0x0000000000000000      0xb0d
+ .debug_str     0x0000000000000000      0x136 main.o
+                                        0x186 (size before relaxing)
+ .debug_str     0x0000000000000136       0x46 memory.o
+                                         0xf6 (size before relaxing)
+ .debug_str     0x000000000000017c       0x2b startup_msp432p401r_gcc.o
+                                        0x164 (size before relaxing)
+ .debug_str     0x00000000000001a7      0x8d0 system_msp432p401r.o
+                                        0xa63 (size before relaxing)
+ .debug_str     0x0000000000000a77       0x96 interrupts_msp432p401r_gcc.o
+                                        0x1c6 (size before relaxing)
+
+.comment        0x0000000000000000       0x31
+ .comment       0x0000000000000000       0x31 main.o
+                                         0x32 (size before relaxing)
+ .comment       0x0000000000000031       0x32 memory.o
+ .comment       0x0000000000000031       0x32 startup_msp432p401r_gcc.o
+ .comment       0x0000000000000031       0x32 system_msp432p401r.o
+ .comment       0x0000000000000031       0x32 interrupts_msp432p401r_gcc.o
+
+.ARM.attributes
+                0x0000000000000000       0x39
+ .ARM.attributes
+                0x0000000000000000       0x39 main.o
+ .ARM.attributes
+                0x0000000000000039       0x39 memory.o
+ .ARM.attributes
+                0x0000000000000072       0x39 startup_msp432p401r_gcc.o
+ .ARM.attributes
+                0x00000000000000ab       0x39 system_msp432p401r.o
+ .ARM.attributes
+                0x00000000000000e4       0x39 interrupts_msp432p401r_gcc.o
+
+.debug_frame    0x0000000000000000      0x1f8
+ .debug_frame   0x0000000000000000       0x34 main.o
+ .debug_frame   0x0000000000000034       0xcc memory.o
+ .debug_frame   0x0000000000000100       0x58 system_msp432p401r.o
+ .debug_frame   0x0000000000000158       0xa0 interrupts_msp432p401r_gcc.o
+
+.debug_ranges   0x0000000000000000       0x28
+ .debug_ranges  0x0000000000000000       0x28 interrupts_msp432p401r_gcc.o
