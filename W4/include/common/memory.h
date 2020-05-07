@@ -173,7 +173,7 @@ int32_t * reserve_words(size_t length);
 /**
  * @brief Frees dynamic memory allocation given source pointer.
  *
- * Frees a dynamic memory allocation by providing the pointer src to the function.
+ * Should fre a dynamic memory allocation by providing the pointer src to the function.
  *
  * @param length Quantity of bytes to be set
  *
