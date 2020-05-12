@@ -20,7 +20,12 @@
  * @date April 1 2017
  *
  */
+
+#include "platform.h"
+#include <stdlib.h>
+#include <stdint.h>
 #include "memory.h"
+
 
 /***********************************************************
  Function Definitions
@@ -48,3 +53,87 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
+  if(abs(dst - src >= length)){ 
+    for(int i=0;i<length;i++){
+      *(dst+i) = *(src+i);
+      *(src + i) = 0;
+    }
+  }
+  else if(dst < src){
+    for(int i=0;i<length;i++){
+      *(dst+i) = *(src+i);
+      *(src + i) = 0;
+    }
+  }
+  else if(dst > src){
+    for(int i=length-1;i>0;i--){
+      *(dst+i) = *(src+i);
+    }
+  }
+  return dst;
+}
+
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
+  if(abs(dst - src >= length)){ 
+    for(int i=0;i<length;i++){
+      *(dst+i) = *(src+i);
+    }
+  }
+  else if(dst < src){
+    for(int i=0;i<length;i++){
+      *(dst+i) = *(src+i);
+    }
+  }
+  else if(dst > src){
+    for(int i=length-1;i>0;i--){
+      *(dst+i) = *(src+i);
+    }
+  }
+  return dst;
+}    
+
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
+  for(int i=0;i<length;i++){
+    *(src+i) = value;
+  }
+  return src;
+}
+
+uint8_t * my_memzero(uint8_t * src, size_t length){
+  for(int i=0;i<length;i++){
+    *(src+i) = 0;
+  }
+  return src;
+}
+
+uint8_t * my_reverse(uint8_t * src, size_t length){
+  int x;
+  if(!(length%2)){
+    for(int i=0;i<length/2;i++){
+      x = *(src + i);
+      *(src + i) = *(src + length - 1 - i);
+      *(src + length -1 - i) = x;
+    }
+  }
+  else{
+    length = length - 1;
+    for(int i=0;i<length/2;i++){
+      x = *(src + i);
+      *(src + i) = *(src + length - i);
+      *(src + length - i) = x;
+    }
+  }
+  return src;
+}
+
+int32_t * reserve_words(size_t length){
+  int32_t *src;
+  src = (int32_t *)malloc(length);
+  return src;
+}
+
+void free_words(int32_t * src){
+  free(src);
+  PRINTF("La dirección de memoria %p fue exitosamente liberada", src);
+}

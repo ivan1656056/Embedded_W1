@@ -127,5 +127,33 @@ int8_t test_memset();
  */
 int8_t test_reverse();
 
+/**
+ * @brief Program that returns string from integer value
+ * 
+ * Converts signed 32 bit decimal integer to any base from 2 to 16 string, and stores it at an address
+ *
+ * @param data Variable that stores data to be converted
+ * @param ptr Address where string will be stored
+ * @param base Numerical base to which number will be converted to
+ *
+ * @return void
+ */
+
+uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base);
+
+/**
+ * @brief Program that returns string from integer value
+ * 
+ * Converts signed 32 bit decimal integer to any base from 2 to 16 string, and stores it at an address
+ *
+ * @param ptr Address where string to be converted is stored
+ * @param digits Number of digits in the character set
+ * @param base Numerical base in which the string is written
+ *
+ * @return void
+ */
+
+int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
+
 #endif /* __COURSE1_H__ */
 
