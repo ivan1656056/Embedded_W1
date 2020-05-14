@@ -11,13 +11,13 @@
 
 # Add your source files to this variable
 
-SOURCES = main.c misc.c
+SOURCES = main.c math.c stats.c memory.c data.c course1.c startup_msp432p401r_gcc.c system_msp432p401r.c interrupts_msp432p401r_gcc.c
 
 # Add your include paths to this variable
 
-INCLUDE_CMSIS = /home/ivan1656056/Herrera_Coursera/W3/include/CMSIS
-INCLUDE_COMMON = /home/ivan1656056/Herrera_Coursera/W3/include/common
-INCLUDE_MSP432 = /home/ivan1656056/Herrera_Coursera/W3/include/msp432
+INCLUDE_CMSIS = /home/ivan1656056/Herrera_Coursera/W4/include/CMSIS
+INCLUDE_COMMON = /home/ivan1656056/Herrera_Coursera/W4/include/common
+INCLUDE_MSP432 = /home/ivan1656056/Herrera_Coursera/W4/include/msp432
 
 # Add your linker files to this variable
 

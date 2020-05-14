@@ -9,25 +9,21 @@
  *
  *****************************************************************************/
 /**
- * @file main.c
- * @brief Main entry point to the C1M2 Assessment
+ * @file memory.h
+ * @brief Abstraction of memory read and write operations
  *
- * This file contains the main code for the C1M2 assesment. Students
- * are not to change any of the code, they are instead supposed to compile
- * these files with their makefile.
+ * This header file provides an abstraction of reading and
+ * writing to memory via function calls. 
  *
  * @author Alex Fosdick
  * @date April 1 2017
  *
  */
+#ifndef __MATH_H__
+#define __MATH_H__
 
-#include <stdlib.h>
-#include "math.h"
-#include "stats.h"
-#include "data.h"
-#include "platform.h"
-#include "course1.h"
+int pow(int base, int number);
 
-#ifdef COURSE1
-  course1();
-#endif
+int floor(int x);
+
+#endif /* __MATH_H__ */

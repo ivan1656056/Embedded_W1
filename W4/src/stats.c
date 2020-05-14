@@ -19,11 +19,6 @@
  *
  */
 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include "stats.h"
 #include "platform.h"
 
@@ -60,16 +55,16 @@ int main() {
 /* Add other Implementation File Code Here */
 
 void print_statistics(unsigned char median, unsigned char mean, unsigned char maximum, unsigned char minimum){
-    printf("The median is: %u, the mean is: %u, the maximum is: %u, the minimum is: %u \n", median, mean, maximum, minimum);   
+    PRINTF("The median is: %u, the mean is: %u, the maximum is: %u, the minimum is: %u \n", median, mean, maximum, minimum);   
 }
 
 void print_array(int size, unsigned char test[]){
 #ifdef VERBOSE
     int i;
     for (i=0;i < size;i++) {
-    printf("%u ",test[i]);
+    PRINTF("%u ",test[i]);
     }
-    printf("\n");
+    PRINTF("\n");
 #endif
 }
 
@@ -139,12 +134,12 @@ void sort_Array(int size, unsigned char test[])
 		}
 	}
 #ifdef VERBOSE
-    printf("The sorted array is: \n");
+    PRINTF("The sorted array is: \n");
     for (int n=0; n<size; n++)
     {
         printf("%u ", test[n]);
     }
-    printf("\n");
+    PRINTF("\n");
     
     for(int i = 0; i < size; i++)
     {

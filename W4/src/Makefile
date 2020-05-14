@@ -45,7 +45,7 @@ else
 LD = arm-none-eabi-ld
 endif
 #Linkage Editor Flags - 
-LDFLAGS =  -Wl,-Map=Output.map -Lplatform.h -Lmemory.h -Lmsp432p401r.h -Lmisc.h -lc -lnosys -flto -ffreestanding -nostdlib -T $(LINKER_FILE)
+LDFLAGS =  -Wl,-Map=Output.map -Lplatform.h -Lmemory.h -Lmsp432p401r.h -Lmisc.h -lc -lm -lnosys -lgcc -flto -ffreestanding -nostdlib -T $(LINKER_FILE)
 #Compiler FLags
 ifeq ($(PLATFORM),HOST)
 CFLAGS = -std=c99
@@ -57,8 +57,11 @@ CPPFLAGS = -g
 
 #Selects Source Files and Future Objects to Be Made Depending on Platform
 
+ifeq ($(PLATFORM),HOST)
+OBJS = main.o math.o data.o stats.o course1.o memory.o
+else
 OBJS = $(SOURCES:.c=.o)
-REQUISITES = *.c
+endif
 
 #Sets the Name of the Final Executable
 TARGET = Executable
@@ -87,7 +90,7 @@ compile-all: $(OBJS)
 
 #Tells the Build Phony What to Do Based on Platform
 ifeq ($(PLATFORM),HOST)
-FORMULE = $(CC) main.o misc.o -o
+FORMULE = $(CC) $(CFLAGS) $(CPPFLAGS) -I$(INCLUDE_CMSIS) -I$(INCLUDE_COMMON) -I$(INCLUDE_MSP432) $(OBJS) -o
 else
 FORMULE = $(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LDFLAGS) -o
 endif
