@@ -20,6 +20,7 @@
 #define __COURSE1_H__
 
 #include <stdint.h>
+#define PRINTF(...) printf(__VA_ARGS__)
 
 #define DATA_SET_SIZE_W (10)
 #define MEM_SET_SIZE_B  (32)

@@ -21,9 +21,10 @@
  *
  */
 
-#include "platform.h"
 #include <stdint.h>
+#include <stdio.h>
 #include "memory.h"
+#define PRINTF(...) printf(__VA_ARGS__)
 
 
 /***********************************************************
@@ -53,7 +54,7 @@ void clear_all(char * ptr, unsigned int size){
 }
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
-  if(abs(dst - src >= length)){ 
+  if(abs(dst - src) >= length){ 
     for(int i=0;i<length;i++){
       *(dst+i) = *(src+i);
       *(src + i) = 0;
@@ -66,7 +67,7 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
     }
   }
   else if(dst > src){
-    for(int i=length-1;i>0;i--){
+    for(int i=length-1;i>=0;i--){
       *(dst+i) = *(src+i);
     }
   }
@@ -134,5 +135,5 @@ int32_t * reserve_words(size_t length){
 
 void free_words(int32_t * src){
   free(src);
-  PRINTF("La dirección de memoria %p fue exitosamente liberada", src);
+  PRINTF("La dirección de memoria %p fue exitosamente liberada\n", src);
 }

@@ -63,10 +63,13 @@ uint8_t my_itoa(int32_t data, uint32_t * ptr, uint32_t base){
         //printf("%c",*(ptr+i));
         k++;
     }
-    return k;
+    else{
+        once = 0;
+        return k;
+    }
 }
 
-int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base){
+int32_t my_atoi(uint32_t *ptr, uint8_t digits, uint32_t base){
     int32_t valor = 0; // Initiates final storage variable
     int8_t data[digits]; // Creates an array to store individual characters of given string
     int8_t start, negativo;
@@ -105,7 +108,7 @@ int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base){
         // printf("%d ",data[i]);
     }
     // Convertion algorithm from any base 2 - 16, to decimal
-    for(int8_t i = 0; i<digits; i++){
+    for(int8_t i = 0; i<digits-start; i++){
         // printf("\n%d",valor);
         valor = valor + pow(base,digits-i-1-start)*data[i];
     }

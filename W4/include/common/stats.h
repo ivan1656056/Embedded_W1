@@ -37,7 +37,7 @@ void print_statistics(unsigned char median, unsigned char mean, unsigned char ma
  */
 
 /* Add Your Declarations and Function Comments here */ 
-void print_array(int size, unsigned char test[]);
+void print_array(unsigned char test[], int size);
 /**
  * @brief <Prints the test array>
  *

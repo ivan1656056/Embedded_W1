@@ -21,6 +21,7 @@
 #define __DATA_H__
 
 #include <stdint.h>
+#include <math.h>
 
 /**
  * @brief Program that returns string from integer value
@@ -48,6 +49,6 @@ uint8_t my_itoa(int32_t data, uint32_t * ptr, uint32_t base);
  * @return void
  */
 
-int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base);
+int32_t my_atoi(uint32_t * ptr, uint8_t digits, uint32_t base);
 
 #endif /* __DATA_H__ */

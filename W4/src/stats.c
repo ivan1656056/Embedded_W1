@@ -28,8 +28,8 @@
 unsigned char sorted_array[SIZE];
 
 int main() {
-
-   
+  
+  course1();
   unsigned char median = 0;
   unsigned char mean = 0;
   unsigned char minimum = 0;
@@ -41,7 +41,7 @@ int main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  print_array(SIZE, test);
+  print_array(test, SIZE);
   sort_Array(SIZE, test);
   median = find_median(SIZE, sorted_array);
   mean = find_mean(SIZE, test);
@@ -58,14 +58,12 @@ void print_statistics(unsigned char median, unsigned char mean, unsigned char ma
     PRINTF("The median is: %u, the mean is: %u, the maximum is: %u, the minimum is: %u \n", median, mean, maximum, minimum);   
 }
 
-void print_array(int size, unsigned char test[]){
-#ifdef VERBOSE
+void print_array(unsigned char test[],int size){
     int i;
     for (i=0;i < size;i++) {
     PRINTF("%u ",test[i]);
     }
     PRINTF("\n");
-#endif
 }
 
 int find_median(int size, unsigned char test[]){
@@ -133,7 +131,7 @@ void sort_Array(int size, unsigned char test[])
 			}  
 		}
 	}
-#ifdef VERBOSE
+//#ifdef VERBOSE
     PRINTF("The sorted array is: \n");
     for (int n=0; n<size; n++)
     {
@@ -145,5 +143,5 @@ void sort_Array(int size, unsigned char test[])
     {
     sorted_array[i] = test[i];
     }
-#endif
+//#endif
 }

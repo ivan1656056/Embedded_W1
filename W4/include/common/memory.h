@@ -22,6 +22,8 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdlib.h>
+
 #define BASE_2 2
 #define BASE_3 3
 #define BASE_4 4
