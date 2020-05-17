@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ * Copyright (C) 2020 by Iván Herrera
  *
  * Redistribution, modification or use of this software in source or binary
  * forms is permitted as long as the files maintain this copyright. Users are 
@@ -9,7 +9,7 @@
  *
  *****************************************************************************/
 /**
- * @file <Array Statistics - Header File> 
+ * @file <stats.h - Header File> 
  * @brief <Program that performs data analysis and return statistical information about an array>
  *
  * <With this program, given an array, we can obtain the maximum, minimum, mean, and median of a data set; we can also reorder the data set from large to small. Statistical values are rounded down to the nearest integer>
@@ -43,8 +43,8 @@ void print_array(unsigned char test[], int size);
  *
  * <Prints all the values of the array that we work on>
  *
- * @param <size> <number of elements that the test array has>
  * @param <test[]> <data array that we analize>
+ * @param <size> <number of elements that the test array has>
  *
  * @return <Screen prints the values of the array using "printf", doesn't return value>
  */

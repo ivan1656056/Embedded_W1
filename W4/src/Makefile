@@ -1,5 +1,5 @@
 #******************************************************************************
-# Copyright (C) 2017 by Alex Fosdick - University of Colorado
+# Copyright (C) 2020 by Iván Herrera
 #
 # Redistribution, modification or use of this software in source or binary
 # forms is permitted as long as the files maintain this copyright. Users are 
@@ -15,11 +15,19 @@
 # Use: make [TARGET] [PLATFORM-OVERRIDES]
 #
 # Build Targets:
-#      <Put a description of the supported targets here>
-#
+#      builda-all: Compiles and links all files, creating final executable
+#      compile-all: Compiles all files, but doesn't link them
+#      .i: Creates preprocessed file for given file (example, given main.c,
+#          make main.i)
+#      .asm: Creates assembly file for given file (example, given main.c,
+#          make main.asm)
+#      .o: Creates object file for given file (example, given main.c,
+#          make main.o)
+#       clean: Eliminates all non source files
 # Platform Overrides:
-#      <Put a description of the supported Overrides here
-#
+#      HOST: Made to be run on host architecture
+#      MSP432: Made to be run on MSP432 microcontroller family with cortex-m4
+#              and thumb architecture
 #------------------------------------------------------------------------------
 include sources.mk
 
@@ -92,14 +100,12 @@ compile-all: $(OBJS)
 ifeq ($(PLATFORM),HOST)
 FORMULE = $(CC) $(CFLAGS) $(CPPFLAGS) -I$(INCLUDE_CMSIS) -I$(INCLUDE_COMMON) -I$(INCLUDE_MSP432) $(OBJS) -o
 else
-FORMULE = $(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LDFLAGS) -o
+FORMULE = $(CC) $(CFLAGS) $(CPPFLAGS) -I$(INCLUDE_CMSIS) -I$(INCLUDE_COMMON) -I$(INCLUDE_MSP432) $(OBJS) $(LDFLAGS) -o
 endif
 
 #Creates a Build Command to Compile all Object files and Link Into a Final Executable.
-.PHONY: build
-build: all
-.PHONY: all
-all: $(TARGET)
+.PHONY: build-all
+build-all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(FORMULE) $@
